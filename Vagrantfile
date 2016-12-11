@@ -29,6 +29,7 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
+  #config.vm.network "private_network", ip: "192.168.50.110", :mac => "080027272599"
   config.vm.network "private_network", ip: "192.168.50.110"
 
   # Create a public network, which generally matched to bridged network.
@@ -71,4 +72,6 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  config.vm.provision "shell", path: "Install_prerequesites.sh"
 end
+
