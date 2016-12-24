@@ -10,11 +10,14 @@ pkg install -y gcc
 echo "Installing git..."
 pkg install -y git
 
-echo "Installing bash..."
-pkg install -y bash
-
 echo "Adding fdesc entry in /etc/fstab because bash requires fdescfs(5) mounted on /dev/fd"
 echo 'fdesc	/dev/fd		fdescfs		rw	0	0' >>/etc/fstab
+
+echo "Mount fdesc set in fstab"
+mount -t fdescfs fdesc /dev/fd
+
+echo "Installing bash..."
+pkg install -y bash
 
 echo "Show current settings for user vagrant"
 pw usershow -n vagrant
