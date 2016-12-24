@@ -2,6 +2,7 @@ AppConfig
 Clone
 DBI
 DBD::Pg
+FGLOCK/DateTime-Event-Recurrence-0.16.tar.gz
 Data::ICal
 Data::ICal::DateTime
 Data::ICal::TimeZone
