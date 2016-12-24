@@ -9,3 +9,5 @@ echo "End preparing vagrant en to use plenv"
 echo "Start installing Perl via plenv"
 su - vagrant -c "/vagrant/Install_Perl_via_plenv.sh"
 echo "End installing Perl via plenv"
+
+su - vagrant -c "/vagrant/Install_Act_dependencies.sh"
