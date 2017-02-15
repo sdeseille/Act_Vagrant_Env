@@ -2,6 +2,10 @@ echo "Start installing prerequesites"
 /vagrant/Install_prerequesites.sh
 echo "End installing prerequesites"
 
+echo "Start installing PostgreSQL"
+/vagrant/Install_PostgreSQL.sh
+echo "End installing PostgreSQL"
+
 echo "Start preparing vagrant env to use plenv"
 su - vagrant -c "/vagrant/Prepare_vagrant_env_to_use_plenv.sh"
 echo "End preparing vagrant en to use plenv"

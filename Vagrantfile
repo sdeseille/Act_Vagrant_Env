@@ -11,10 +11,13 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "freebsd/FreeBSD-10.2-RELEASE"
-  config.vm.synced_folder ".", "/vagrant", type: "rsync"
+  # boxes at https://atlas.hashicorp.com/search
+  config.vm.guest = :freebsd
+  config.vm.box = "freebsd/FreeBSD-10.2-STABLE"
   config.ssh.shell = "sh"
+  config.vm.base_mac = "080027D14C65"
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
+
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -54,6 +57,20 @@ Vagrant.configure("2") do |config|
   #   # Customize the amount of memory on the VM:
   #   vb.memory = "1024"
   # end
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+    # Customize the amount of memory on the VM:
+    vb.memory = "1024"
+    vb.cpus = 1
+    vb.customize ["modifyvm", :id, "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
+    vb.customize ["modifyvm", :id, "--usb", "off"]
+    vb.customize ["modifyvm", :id, "--usbehci", "off"]
+    vb.customize ["modifyvm", :id, "--audio", "none"]
+    vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -74,4 +91,3 @@ Vagrant.configure("2") do |config|
   # SHELL
   config.vm.provision "shell", path: "Prepare_Act_server.sh"
 end
-
